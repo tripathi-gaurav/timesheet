@@ -36,4 +36,4 @@ config :timesheet, TimesheetWeb.Endpoint,
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.
-config: :timesheet, TimesheetWeb.EndPoint, server: true
+config :timesheet, TimesheetWeb.Endpoint, server: true

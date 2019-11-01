@@ -10,6 +10,7 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :timesheet, TimesheetWeb.Endpoint,
+  load_from_system_env: false,
   url: [host: "timesheet.webassembly.site", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
@@ -52,4 +53,13 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.
+
+config :timesheet, Timesheet.Repo,
+   username: "timesheet",
+   password: "ar0jouDu5aew",
+   database: "timesheet_prod",
+   pool_size: 10 
+
+
+
 import_config "prod.secret.exs"
