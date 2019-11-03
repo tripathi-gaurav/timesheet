@@ -1,12 +1,25 @@
 # Timesheet
 
 Flow decided:
+
+*Employee:*
 1. User logs in > Homepage shows user info
 2. User click on `Sheets`
 3. `Sheets` screen will show `timesheets` specific to user
 4. User either creates a new sheet or selects and existing sheet
 5. All available `jobs` will be visible to user
 6. User then creates `Tasks` associated with the `sheet_id` and `job_id` [**NOT IMPLEMENTED**]
+
+
+
+*Manager:* [**NOT IMPLEMENTED**]
+
+1. User logins in > Homepage show user info
+2. Homepage shows list of employees under manager
+3. Homepage shows all timesheets pending approval
+4. Homepage shows all timesheets over 8 hours
+
+---
 
 ### Tables
 
