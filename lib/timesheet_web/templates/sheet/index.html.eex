@@ -1,0 +1,28 @@
+<h1>Listing Timesheets for User: <%= @current_user.name %> </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sheet ID</th>
+      <th>Total hours</th>
+
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for sheet <- @sheets do %>
+    <tr>
+     <td><%= sheet.id %></td>
+      <td><%= sheet.total_hours %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.sheet_path(@conn, :show, sheet) %></span>
+        <span><%= link "Select", to: Routes.job_path(@conn, :show, sheet) %></span>
+        <%# <span><%= link "Delete", to: Routes.sheet_path(@conn, :delete, sheet), method: :delete, data: [confirm: "Are you sure?"] %> <%# </span> %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Sheet", to: Routes.sheet_path(@conn, :new) %></span>

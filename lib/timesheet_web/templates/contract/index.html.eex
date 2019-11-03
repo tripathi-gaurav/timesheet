@@ -1,0 +1,26 @@
+<h1>Listing Contracts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Budget</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for contract <- @contracts do %>
+    <tr>
+      <td><%= contract.budget %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.contract_path(@conn, :show, contract) %></span>
+        <span><%= link "Edit", to: Routes.contract_path(@conn, :edit, contract) %></span>
+        <span><%= link "Delete", to: Routes.contract_path(@conn, :delete, contract), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Contract", to: Routes.contract_path(@conn, :new) %></span>

@@ -1,0 +1,13 @@
+<h1>Show Contract</h1>
+
+<ul>
+
+  <li>
+    <strong>Budget:</strong>
+    <%= @contract.budget %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.contract_path(@conn, :edit, @contract) %></span>
+<span><%= link "Back", to: Routes.contract_path(@conn, :index) %></span>

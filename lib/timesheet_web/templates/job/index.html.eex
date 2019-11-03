@@ -1,0 +1,32 @@
+<h1>Listing Jobs for  User: <%= @current_user.name %>. Selected job will be associated with Sheet ID:  <%= @sheet.id %> </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Job code</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for job <- @jobs do %>
+    <tr>
+      <td><%= job.job_code %></td>
+      <% IO.inspect job %>
+      <td>
+        <% params = %{ sheet: @sheet, job: job} 
+          IO.inspect params
+        %>
+        <span><%= link "Select job", to: Routes.task_path(@conn, :create, params) %></span>
+        
+        <!--
+        <span><%= link "Edit", to: Routes.job_path(@conn, :edit, job) %></span>
+        <span><%= link "Delete", to: Routes.job_path(@conn, :delete, job), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        -->
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Job", to: Routes.job_path(@conn, :new) %></span>

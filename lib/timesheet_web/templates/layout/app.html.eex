@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
       <body>
-    <div class="container">
-      <nav class="navbar navbar-expand-sm navbar-light bg-white">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="col-4">
           <a class="navbar-brand" href="#">ACME Timesheet</a>
         </div>
-        <div class="col-8">
+        <div class="col-4">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Submit Timesheet</a>
@@ -23,6 +23,16 @@
             </li>
           </ul>
         </div>
+        <div class="col-4 text-light">
+          <%= if @current_user do %>
+            User: <%= @current_user.name %>
+            (<%= link("Logout", to: Routes.session_path(@conn, :delete),
+              method: :delete) %>)
+          <% else %>
+            <%= link("Login", to: Routes.session_path(@conn, :new)) %>
+          <% end %>
+        </div>
+        
       </nav>
 
       <div class="row">
