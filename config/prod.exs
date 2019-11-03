@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :timesheet, TimesheetWeb.Endpoint,
   load_from_system_env: false,
-  url: [host: "timesheet.webassembly.site", port: 80],
+  url: [host: "time1.webassembly.site", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production

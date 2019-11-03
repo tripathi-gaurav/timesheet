@@ -1,0 +1,17 @@
+
+[Unit]
+Description=Timesheet app
+
+[Service]
+Type=simple
+User=pippin
+Group=pippin
+Restart=on-failure
+Environment=MIX_ENV=prod "PORT=5001"
+Environment=LANG=en_US.UTF-8
+
+WorkingDirectory=/home/pippin/timesheet
+ExecStart=/bin/bash /home/pippin/timesheet/start.sh
+
+[Install]
+WantedBy=multi-user.target
