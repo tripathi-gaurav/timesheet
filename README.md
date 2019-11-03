@@ -9,9 +9,13 @@ Flow decided:
 6. User then creates `Tasks` associated with the `sheet_id` and `job_id` [**NOT IMPLEMENTED**]
 
 ### Tables
+
+
+
 List of tables
+
 | Schema   |       Name        |   Type   |   Owner     |
-| -------- +------------------ + -------- + ------------|
+| ------------- |:-------------:| -----:| -----:|
 | public | contracts           | table    |  timesheet  |
 | public | jobs                | table    |  timesheet  |
 | public | roles               | table    |  timesheet  |
@@ -20,16 +24,71 @@ List of tables
 | public | users               | table    |  timesheet  |
 
 
-Table "public.users"
-Column     |              Type              | Collation | Nullable |              Default              | Storage  | Stats target | Description
----------------+--------------------------------+-----------+----------+-----------------------------------+----------+--------------+-------------
-id            | bigint                         |           | not null | nextval('users_id_seq'::regclass) | plain    |              |
-email         | character varying(255)         |           |          |                                   | extended |              |
-name          | character varying(255)         |           |          |                                   | extended |              | 
-role          | bigint                         |           | not null | 1                                 | plain    |              |
-inserted_at   | timestamp(0) without time zone |           | not null |                                   | plain    |              |
-updated_at    | timestamp(0) without time zone |           | not null |                                   | plain    |              |
-password_hash | character varying(255)         |           | not null | ''::character varying             | extended |              |
+Table `users`
+
+| Column     |              Type                          |
+| ---------------|-------------------------------------   |
+| id            | bigint                                  |
+| email         | character varying(255) (*unique*)       |
+| name          | character varying(255)                  |
+| role          | bigint (*foreign key* from roles table) |
+| inserted_at   | timestamp(0) without time zone          |
+| updated_at    | timestamp(0) without time zone          |
+| password_hash | character varying(255)                  |
+
+
+Table `tasks`
+
+| Column      |              Type              |
+| ----------- |:------------------------------:|
+| id          | bigint                         |
+| hours       | integer                        |
+| sheet       | integer (*foreign key*)        |
+| user_id     | bigint  (*foreign key*)        |
+| job_code    | bigint  (*foreign key*)        |
+| inserted_at | timestamp(0) without time zone |
+| updated_at  | timestamp(0) without time zone |
+
+Table `sheets`
+
+| Column      |              Type              |
+| ------------|--------------------------------|
+| id          | bigint                         |
+| total_hours | integer                        |
+| user_id     | bigint    (*foreign key*)      |
+| inserted_at | timestamp(0) without time zone |
+| updated_at  | timestamp(0) without time zone |
+
+Table `roles`
+
+| Column      |              Type              |
+| ------------|--------------------------------|
+| id          | bigint                         |
+| role_id     | integer   (*foreign key*)      |
+| desc        | character varying(255)         |
+| inserted_at | timestamp(0) without time zone |
+| updated_at  | timestamp(0) without time zone |
+
+
+Table `jobs`
+
+| Column    |              Type                |
+| ------------|--------------------------------|
+| id          | bigint                         |
+| job_code    | character varying(255)         |
+| manager_id  | int  (*foreign key* from users)|
+| inserted_at | timestamp(0) without time zone |
+| updated_at  | timestamp(0) without time zone |
+
+Table `contracts`
+
+| Column      |              Type              |
+| ------------|--------------------------------|
+| id          | bigint                         |
+| budget      | integer                        |
+| manager_id  | int (*foreign key from users*) |
+| inserted_at | timestamp(0) without time zone |
+| updated_at  | timestamp(0) without time zone |
 
 
 To start your Phoenix server:
